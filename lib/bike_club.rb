@@ -41,5 +41,10 @@ class BikeClub
     best_timed
   end
 
- 
+  def bikers_eligible(ride)
+    eligible_bikers = @bikers.find_all do |biker|
+      biker.log_ride(ride, 0.0) == true 
+    end
+    eligible_bikers
+  end
 end

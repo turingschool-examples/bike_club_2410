@@ -52,4 +52,9 @@ RSpec.describe Biker do
       @ride2 => [60.9]
     })
     end
+
+    it 'does not log rides outside acceptable terrain or distance' do
+    # Only add :gravel to acceptable terrain (not :hills)
+    @biker.learn_terrain!(:gravel)
+    end
 end

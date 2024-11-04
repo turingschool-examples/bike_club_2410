@@ -36,3 +36,11 @@ it 'has attributes' do
   expect(@bike_club.name).to eq("Mountain Riders")
   expect(@bike_club.bikers).to eq([])
 end
+
+it 'can add bikers' do
+  @bike_club.add_biker(@biker1)
+  @bike_club.add_biker(@biker2)
+  
+  expect(@bike_club.bikers).to eq([@biker1, @biker2])
+end
+

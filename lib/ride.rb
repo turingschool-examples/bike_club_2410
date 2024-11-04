@@ -7,4 +7,8 @@ class Ride
     @loop = ride_data[:loop]
     @terrain = ride_data[:terrain]
   end
+
+  def loop?
+    @loop
+  end
 end

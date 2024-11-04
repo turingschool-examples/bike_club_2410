@@ -76,7 +76,7 @@ RSpec.describe BikeClub do
       end  
     end
 
-    descirbe "#best_time" do
+    describe "#best_time" do
       it 'can determine which biker has the best time for a ride' do
         expect(@bike_club.best_time(@ride1)).to eq(@biker1) 
         expect(@bike_club.best_time(@ride2)).to eq(@biker2)

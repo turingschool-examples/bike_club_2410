@@ -86,7 +86,7 @@ RSpec.describe do
     end
 
     describe '#personal_record(ride)' do
-        xit 'tracks a riders best distance on a ride' do
+        it 'tracks a riders best distance on a ride' do
             @biker.learn_terrain!(:gravel)
             @biker.learn_terrain!(:hills)
             @biker2.learn_terrain!(:gravel)

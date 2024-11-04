@@ -113,7 +113,6 @@ pry(main)> biker.rides
 #    }
 
 
-## WE ARE HERE
 pry(main)> biker.personal_record(ride1)
 => 91.1
 
@@ -148,6 +147,7 @@ pry(main)> biker2.personal_record(ride1)
 #=> false
 ```
 ## Iteration 3 - Bike Club
+
 
 Use TDD to create a `BikeClub` class that adds the following functionality:
 

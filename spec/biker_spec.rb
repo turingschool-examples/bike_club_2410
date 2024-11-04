@@ -56,5 +56,27 @@ RSpec.describe Biker do
     it 'does not log rides outside acceptable terrain or distance' do
     # Only add :gravel to acceptable terrain (not :hills)
     @biker.learn_terrain!(:gravel)
+
+    # Attempt to log a ride with :hills terrain and another over max distance
+    @biker.log_ride(@ride1, 95.0) # Should not log, as @ride1 is :hills
+    @biker.log_ride(@ride2, 65.0) # Should log, as @ride2 is within distance and acceptable terrain
+
+    expect(@biker.rides).to eq({
+      @ride2 => [65.0]
+    })
     end
+
+    it 'returns personal record for a ride' do
+    # Add terrains, log rides, and verify personal record
+    @biker.learn_terrain!(:gravel)
+    @biker.learn_terrain!(:hills)
+    @biker.log_ride(@ride1, 92.5)
+    @biker.log_ride(@ride1, 91.1)
+
+    # Personal record for @ride1 should be the lowest time (91.1)
+    expect(@biker.personal_record(@ride1)).to eq(91.1)
+
+    # If no rides logged for a ride, personal_record should return false
+    expect(@biker.personal_record(@ride2)).to eq(false)
+  end
 end

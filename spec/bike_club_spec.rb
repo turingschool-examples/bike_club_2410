@@ -63,7 +63,7 @@ RSpec.describe BikeClub do
       @biker1.log_ride(@ride2, 60.9)
       @biker1.log_ride(@ride3, 97.6)
       @biker2.log_ride(@ride1, 97.0)
-      @biker2.log_ride(@ride2, 67.0)
+      @biker2.log_ride(@ride2, 60.3)
       @biker2.log_ride(@ride3, 100.2)
       @biker3.log_ride(@ride2, 63.4)
       @biker3.log_ride(@ride3, 94.3)
@@ -76,6 +76,14 @@ RSpec.describe BikeClub do
       end  
     end
 
-   
+    descirbe "#best_time" do
+      it 'can determine which biker has the best time for a ride' do
+        expect(@bike_club.best_time(@ride1)).to eq(@biker1) 
+        expect(@bike_club.best_time(@ride2)).to eq(@biker2)
+        expect(@bike_club.best_time(@ride3)).to eq(@biker3)
+      end
+    end
+
+    
   end
 end

@@ -1,7 +1,7 @@
 # lib/biker.rb
 
 class Biker
-  # Getter methods for name, max_distance, rides, and acceptable_terrain
+  # Methods for name, max_distance, rides, and acceptable_terrain
   attr_reader :name, :max_distance, :rides, :acceptable_terrain
 
   # Initialize with name, max_distance, an empty rides hash, and empty acceptable_terrain array

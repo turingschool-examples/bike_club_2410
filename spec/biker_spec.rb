@@ -75,4 +75,11 @@ RSpec.describe Biker do
                                   @ride2 => [60.9, 61.6]})
     end
   end
+
+  describe "#personal_record" do
+    it 'returns biker\'s personal record based on ride' do
+      expect(@biker.personal_record(@ride1)).to eq(91.1)
+      expect(@biker.personal_record(@ride2)).to eq(60.9)
+    end
+  end
 end

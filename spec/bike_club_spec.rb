@@ -42,8 +42,8 @@ RSpec.describe BikeClub do
     it 'can add a biker to list of bikers' do
       expect(@bike_club.bikers).to eq([])
 
-      @bike_club.add(@biker1)
-      @bike_club.add(@biker2)
+      @bike_club.add_biker(@biker1)
+      @bike_club.add_biker(@biker2)
 
       expect(@bike_club.bikers).to eq([@biker1, @biker2])
     end
@@ -68,6 +68,10 @@ RSpec.describe BikeClub do
       @biker3.log_ride(@ride2, 63.4)
       @biker3.log_ride(@ride3, 94.3)
       @biker3.log_ride(@ride3, 96.8)
+      
+      @bike_club.add_biker(@biker1)
+      @bike_club.add_biker(@biker2)
+      @bike_club.add_biker(@biker3)
     end
 
     describe "#most_rides" do

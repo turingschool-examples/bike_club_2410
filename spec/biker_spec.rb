@@ -35,5 +35,21 @@ RSpec.describe Biker do
 
     expect(@biker.acceptable_terrain).to eq([:gravel, :hills])
   end
-  
+
+    it 'logs rides within acceptable terrain and distance' do
+    # Add terrains to acceptable_terrain
+    @biker.learn_terrain!(:gravel)
+    @biker.learn_terrain!(:hills)
+
+    # Log rides and check if they meet requirements
+    @biker.log_ride(@ride1, 92.5)
+    @biker.log_ride(@ride1, 91.1)
+    @biker.log_ride(@ride2, 60.9)
+
+    # Verify the rides hash now contains times for each logged ride
+    expect(@biker.rides).to eq({
+      @ride1 => [92.5, 91.1],
+      @ride2 => [60.9]
+    })
+    end
 end

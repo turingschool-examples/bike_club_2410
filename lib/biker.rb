@@ -6,7 +6,7 @@ class Biker
   def initialize(name, max_distance)
     @name = name
     @max_distance = max_distance
-    @rides = Hash.new
+    @rides = {}
     @acceptable_terrain = []
   end
 
@@ -19,7 +19,11 @@ class Biker
       @rides[ride] << time
     else
       @rides[ride] = [time]
-      binding.pry
     end
+  end
+
+  def personal_record(ride)
+    @rides[ride].min
+    # binding.pry
   end
 end

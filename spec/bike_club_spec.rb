@@ -4,15 +4,16 @@ require './lib/ride'
 require './lib/biker'
 require './lib/bike_club'
 
+# Class Setup and Initial Attributes
 RSpec.describe BikeClub do
   before(:each) do
     # Create rides to use in tests
-    @ride1 = Ride.new({ name: "Black Creek Trail", distance: 10.7, loop: false, terrain: :hills })
-    @ride2 = Ride.new({ name: "Cape Town Lake", distance: 14.9, loop: true, terrain: :gravel })
+    @ride1 = Ride.new({ name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills })
+    @ride2 = Ride.new({ name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel })
 
     # Create bikers with max distances
-    @biker1 = Biker.new("Syre", 30)
-    @biker2 = Biker.new("Scarlett", 15)
+    @biker1 = Biker.new("Kenny", 30)
+    @biker2 = Biker.new("Athena", 15)
 
     # Set up the bikers with acceptable terrain and log rides
     @biker1.learn_terrain!(:hills)
@@ -29,39 +30,53 @@ RSpec.describe BikeClub do
     @bike_club = BikeClub.new("Mountain Riders")
   end
 
+# Test Existence of BikeClub
   it 'exists' do
-  expect(@bike_club).to be_a(BikeClub)
-end
-it 'has attributes' do
-  expect(@bike_club.name).to eq("Mountain Riders")
-  expect(@bike_club.bikers).to eq([])
-end
-
-it 'can add bikers' do
-  @bike_club.add_biker(@biker1)
-  @bike_club.add_biker(@biker2)
+    # Check if BikeClub instance is created successfully
+    expect(@bike_club).to be_a(BikeClub)
+  end
   
-  expect(@bike_club.bikers).to eq([@biker1, @biker2])
-end
+# Test bikers_eligible Method
+  it 'has attributes' do
+    # Validate the name and bikers attributes
+    expect(@bike_club.name).to eq("Mountain Riders")
+    expect(@bike_club.bikers).to eq([])
+  end
 
-it 'can find the biker with the most rides' do
-  @bike_club.add_biker(@biker1)
-  @bike_club.add_biker(@biker2)
-  
-  expect(@bike_club.most_rides).to eq(@biker1)
-end
+#  Test add_biker Method
+  it 'can add bikers' do
+    # Add bikers and check the bikers array
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+    
+    expect(@bike_club.bikers).to eq([@biker1, @biker2])
+  end
 
-it 'can find the biker with the best time for a specific ride' do
-  @bike_club.add_biker(@biker1)
-  @bike_club.add_biker(@biker2)
-  
-  expect(@bike_club.best_time(@ride2)).to eq(@biker1)
-end
+# Test most_rides Method
+  it 'can find the biker with the most rides' do
+    # Add bikers and verify the one with the most rides
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+    
+    expect(@bike_club.most_rides).to eq(@biker1)
+  end
 
-it 'can find bikers eligible for a ride' do
-  @bike_club.add_biker(@biker1)
-  @bike_club.add_biker(@biker2)
-  
-  expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1])
+# Test best_time Method
+  it 'can find the biker with the best time for a specific ride' do
+    # Add bikers and check who has the best time for a specific ride
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+    
+    expect(@bike_club.best_time(@ride2)).to eq(@biker1)
+  end
+
+#  Test bikers_eligible Method
+  it 'can find bikers eligible for a ride' do
+    # Add bikers and check who is eligible for a specific ride
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+    
+    expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1])
+    expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker2])
   end
 end

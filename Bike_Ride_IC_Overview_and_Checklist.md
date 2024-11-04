@@ -32,7 +32,8 @@ The `Ride` class allows bikers to easily check if a route meets their preference
 - [ ] Write and pass tests for each method.
 
 **Reflection for Iteration 1:**
-- **Name:** (Your Name Here- **Reflection:** How did you feel completing this iteration? What went well, and what could you improve on in the future?
+- **Name:** Qory
+**Reflection:** How did you feel completing this iteration? What went well, and what could you improve on in the future?
 
 ---
 
@@ -56,7 +57,7 @@ This class introduces constraints, such as restricting bikers from logging rides
 - [ ] Write and pass tests for each method.
 
 **Reflection for Iteration 2:**
-- **Name:** (Your Name Here)
+- **Name:** Qory
 - **Reflection:** How did you feel completing this iteration? What challenges did you face, and how did you overcome them?
 
 ---
@@ -83,7 +84,7 @@ This class enables group-level tracking, helping determine the most experienced 
 - [ ] Write and pass tests for each method.
 
 **Reflection for Iteration 3:**
-- **Name:** (Your Name Here)
+- **Name:** Qory
 - **Reflection:** How did you feel completing this iteration? Any new insights or areas to improve for future iterations?
 
 ---
@@ -104,9 +105,5 @@ This final iteration adds the `record_group_ride` feature, which simulates a gro
 - [ ] Ensure `self.best_rider` accurately finds the best rider across all clubs.
 
 **Reflection for Iteration 4:**
-- **Name:** (Your Name Here)
+- **Name:** Qory
 - **Reflection:** How did this final iteration go? Any additional thoughts on the challenge as a whole or ways you’d improve next time?
-
----
-
-This file provides a structured overview of the project requirements, along with a checklist and reflection section for each iteration. Good luck, and let me know if you need further assistance!

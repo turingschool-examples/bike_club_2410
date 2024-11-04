@@ -12,8 +12,8 @@ RSpec.describe Ride do
   # Using before(:each) to set up Ride instances that can be used in multiple tests.
   before(:each) do
     # Creating two Ride instances for testing
-    @ride1 = Ride.new({ name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills })
-    @ride2 = Ride.new({ name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel })
+    @ride1 = Ride.new({ name: "Black Creek Trail", distance: 10.7, loop: false, terrain: :hills })
+    @ride2 = Ride.new({ name: "Cape Town Lake", distance: 14.9, loop: true, terrain: :gravel })
   end
 
   # Test to check if the Ride instance is created successfully
@@ -25,7 +25,7 @@ RSpec.describe Ride do
   # Test to check if the Ride instance has correct attributes after initialization
   it 'has attributes' do
     # Validating each attribute of @ride1
-    expect(@ride1.name).to eq("Walnut Creek Trail") # Checking the name
+    expect(@ride1.name).to eq("Black Creek Trail") # Checking the name
     expect(@ride1.distance).to eq(10.7)             # Checking the base distance
     expect(@ride1.terrain).to eq(:hills)            # Checking the terrain type
     expect(@ride1.loop?).to eq(false)               # Checking if it’s a loop

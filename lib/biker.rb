@@ -6,7 +6,7 @@ class Biker
 
   # Initialize with name, max_distance, an empty rides hash, and empty acceptable_terrain array
   def initialize(name, max_distance)
-    @name = name                  # Name of the biker (e.g., "Kenny")
+    @name = name                  # Name of the biker (e.g., "Syre")
     @max_distance = max_distance  # Maximum distance the biker can handle
     @rides = {}                   # Hash to log rides with associated times
     @acceptable_terrain = []      # Array to store acceptable terrain types

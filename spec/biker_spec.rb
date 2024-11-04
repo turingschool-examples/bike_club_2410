@@ -6,11 +6,11 @@ require './lib/biker'
 RSpec.describe Biker do
   before(:each) do
     # Create ride instances to test with
-    @ride1 = Ride.new({ name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills })
-    @ride2 = Ride.new({ name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel })
+    @ride1 = Ride.new({ name: "Black Creek Trail", distance: 10.7, loop: false, terrain: :hills })
+    @ride2 = Ride.new({ name: " Cape Town Lake", distance: 14.9, loop: true, terrain: :gravel })
 
     # Create a Biker instance for testing
-    @biker = Biker.new("Kenny", 30)
+    @biker = Biker.new("Syre", 30)
   end
 
   it 'exists' do
@@ -20,7 +20,7 @@ RSpec.describe Biker do
 
   it 'has attributes' do
     # Verify Biker's name and max_distance attributes
-    expect(@biker.name).to eq("Kenny")
+    expect(@biker.name).to eq("Syre")
     expect(@biker.max_distance).to eq(30)
 
     # Check that rides and acceptable_terrain are initially empty

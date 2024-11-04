@@ -55,11 +55,17 @@ RSpec.describe Biker do
 
   describe "#log_ride" do
     it 'can log a rides' do
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+
       expect(@biker.log_ride(@ride1, 92.5)).to be true
       expect(@biker.log_ride(@ride2, 60.9)).to be true
     end
 
     it 'can log multiple times for different rides' do
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+
       expect(@biker.log_ride(@ride1, 92.5)).to be true
       expect(@biker.log_ride(@ride1, 91.1)).to be true
 
@@ -68,6 +74,9 @@ RSpec.describe Biker do
     end
 
     it 'can log the rides in the rides log' do
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+
       @biker.log_ride(@ride1, 92.5)
       @biker.log_ride(@ride1, 91.1)
       @biker.log_ride(@ride2, 60.9)
@@ -80,6 +89,14 @@ RSpec.describe Biker do
 
   describe "#personal_record" do
     it 'returns biker\'s personal record based on ride' do
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+
+      @biker.log_ride(@ride1, 92.5)
+      @biker.log_ride(@ride1, 91.1)
+      @biker.log_ride(@ride2, 60.9)
+      @biker.log_ride(@ride2, 61.6)
+
       expect(@biker.personal_record(@ride1)).to eq(91.1)
       expect(@biker.personal_record(@ride2)).to eq(60.9)
     end

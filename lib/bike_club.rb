@@ -10,6 +10,7 @@ class BikeClub
 
     def add_biker(biker)
         @bikers << biker
+        @bikers
     end
 
     def most_rides
@@ -29,4 +30,12 @@ class BikeClub
             biker.acceptable_terrain.include?(ride.terrain) && biker.max_distance >= ride.total_distance
         end
     end
+
+    # def self.record_group_ride(ride)
+    #     @@group_ride = {
+    #         start_time: Time.new(2024, 11, 4),
+    #         ride: ride,
+    #         members: @bikers
+    #     }
+    # end
 end

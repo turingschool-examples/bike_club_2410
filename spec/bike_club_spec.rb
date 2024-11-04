@@ -84,6 +84,12 @@ RSpec.describe BikeClub do
       end
     end
 
-    
+    describe "#biker_eligible" do
+      it 'can determine is a biker is eligible for a ride' do
+        expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1, @biker2, @biker3])
+        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker3])
+        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1])
+      end
+    end
   end
 end

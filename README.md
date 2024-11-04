@@ -60,8 +60,9 @@ Graded Items:
 3. Bikers can log a ride with a time. The Biker can keep track of all of its previous rides and times for those rides.
 4. A Biker will not log a ride if the ride's terrain does not match their acceptable terrain. They also won't log a ride if the ride's total distance is greater than the Biker's max distance.
 5. A Biker can report its personal record for a specific ride. This is the lowest time recorded for a ride. This method will return false if the Biker hasn't completed the ride
-
 ```ruby
+
+### We are here.
 pry(main)> require './lib/ride'
 # => true
 
@@ -82,6 +83,7 @@ pry(main)> biker.rides
 
 pry(main)> biker.acceptable_terrain
 # => []
+
 
 pry(main)> biker.learn_terrain!(:gravel)
 
@@ -109,6 +111,7 @@ pry(main)> biker.rides
 #      #<Ride:0x00007fc62ca32a10...> => [92.5, 91.1],
 #      #<Ride:0x00007fc62cb42ba8...> => [60.9, 61.6]
 #    }
+
 
 pry(main)> biker.personal_record(ride1)
 => 91.1
@@ -145,10 +148,14 @@ pry(main)> biker2.personal_record(ride1)
 ```
 ## Iteration 3 - Bike Club
 
+
 Use TDD to create a `BikeClub` class that adds the following functionality:
 
 1. Each `BikeClub` has a name, as well as a way to read that data
 1. Each `BikeClub` has a list of Bikers, and the `BikeClub` can add new Bikers.
+
+
+we are here
 
 Additionally, use TDD to add the following functionality to the `BikeClub` class. A passing challenge will complete at least one of the following. We recommend completing more than one if you have time.
 

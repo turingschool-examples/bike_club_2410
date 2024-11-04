@@ -14,6 +14,8 @@ class Biker
   end
 
   def log_ride(ride, time)
+    return false unless @acceptable_terrain.include?(ride.terrain) == true
+    return false unless @max_distance > ride.total_distance
 
     if @rides.keys.include?(ride) != true
       @rides[ride] = [time]
@@ -24,7 +26,7 @@ class Biker
   end
 
   def personal_record(ride)
-    
+    return false if @rides.keys.include?(ride) != true
     times = @rides[ride] 
     
     best_time = times.min_by do |time|

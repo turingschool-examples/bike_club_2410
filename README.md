@@ -60,8 +60,9 @@ Graded Items:
 3. Bikers can log a ride with a time. The Biker can keep track of all of its previous rides and times for those rides.
 4. A Biker will not log a ride if the ride's terrain does not match their acceptable terrain. They also won't log a ride if the ride's total distance is greater than the Biker's max distance.
 5. A Biker can report its personal record for a specific ride. This is the lowest time recorded for a ride. This method will return false if the Biker hasn't completed the ride
-
 ```ruby
+
+### We are here.
 pry(main)> require './lib/ride'
 # => true
 
@@ -82,6 +83,7 @@ pry(main)> biker.rides
 
 pry(main)> biker.acceptable_terrain
 # => []
+
 
 pry(main)> biker.learn_terrain!(:gravel)
 
@@ -110,6 +112,8 @@ pry(main)> biker.rides
 #      #<Ride:0x00007fc62cb42ba8...> => [60.9, 61.6]
 #    }
 
+
+## WE ARE HERE
 pry(main)> biker.personal_record(ride1)
 => 91.1
 

@@ -92,6 +92,11 @@ RSpec.describe Biker do
         biker2 = Biker.new("Athena", 15)
         ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
         ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+
+        biker.learn_terrain!(:gravel)
+        biker.learn_terrain!(:hills)
+        biker2.learn_terrain!(:gravel)
+        biker2.learn_terrain!(:hills)
         
         biker.log_ride(ride1, 92.5)
         biker.log_ride(ride1, 91.1)
@@ -102,7 +107,7 @@ RSpec.describe Biker do
         expect(biker.personal_record(ride1)).to eq(91.1)
         expect(biker.personal_record(ride2)).to eq(60.9)
         expect(biker2.personal_record(ride1)).to be false
-        expect(biker.personal_record(ride2)).to eq(65.0)
+        expect(biker2.personal_record(ride2)).to eq(65.0)
       end
     end
   end

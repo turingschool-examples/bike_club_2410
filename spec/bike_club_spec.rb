@@ -28,3 +28,7 @@ RSpec.describe BikeClub do
     # Create a BikeClub instance
     @bike_club = BikeClub.new("Mountain Riders")
   end
+
+  it 'exists' do
+  expect(@bike_club).to be_a(BikeClub)
+end

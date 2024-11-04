@@ -13,6 +13,7 @@ RSpec.describe Biker do
 
         it 'has attributes' do
             biker = Biker.new("Kenny", 30)
+            binding.pry
 
             expect(biker.name).to eq("Kenny")
             expect(biker.max_distance).to eq(30)

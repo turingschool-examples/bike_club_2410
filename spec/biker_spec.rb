@@ -5,6 +5,8 @@ RSpec.describe Biker do
   # Iteration 2
   before(:each) do
     @biker = Biker.new("Kenny", 30)
+    @biker2 = Biker.new("Athena", 15)
+
     @ride1 = Ride.new({name: "Walnut Creek Trail", 
                       distance: 10.7, 
                       loop: false, 
@@ -82,4 +84,46 @@ RSpec.describe Biker do
       expect(@biker.personal_record(@ride2)).to eq(60.9)
     end
   end
+
+  describe "#restrictions" do
+    it 'can not go on ride if acceptable_terrain does not contain terrian type' do
+      expect(@biker2.acceptable_terrain).to be_empty
+      expect(@biker2.rides).to be_empty
+
+      expect(@biker2.log_ride(@ride1, 97.0)).to be false
+      expect(@biker2.log_ride(@ride2, 67.0)).to be false
+
+      expect(@biker2.rides).to be_empty
+    end
+
+    it 'can not go on ride if the total_distance of ride is greater than max_distance' do
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+
+      expect(@biker2.log_ride(@ride1, 95.0)).to be false
+
+      expect(@biker2.rides).to be_empty
+    end
+
+    it 'can only go on a ride if they know the terrain and can bike total distance' do
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+
+      expect(@biker2.log_ride(@ride2, 65.0)).to be true
+
+      expect(@biker2.rides).to eq({@ride2 => [65.0]})
+    end
+
+    it 'only returns personal_records of eligible rides, otherwise false' do
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+
+      @biker2.log_ride(@ride1, 95.0)
+      @biker2.log_ride(@ride2, 65.0)
+
+      expect(@biker2.personal_record(@ride2)).to eq(65.0)
+      expect(@biker2.personal_record(@ride1)).to be false
+    end
+  end
+
 end

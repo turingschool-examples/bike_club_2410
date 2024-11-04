@@ -33,4 +33,10 @@ RSpec.describe Ride do
     end
   end
 
+  describe "#total_distance" do
+    it 'has double the distance if the ride is not a loop' do
+      expect(@ride1.total_distance).to eq(21.4)
+      expect(@ride2.total_distance).to eq(14.9)
+    end
+  end
 end

@@ -26,5 +26,11 @@ RSpec.describe Ride do
     end
   end
 
- 
+  describe "#loop?" do
+    it 'can determine if ride is a loop' do
+      expect(@ride1.loop?).to be false
+      expect(@ride2.loop?).to be true
+    end
+  end
+
 end

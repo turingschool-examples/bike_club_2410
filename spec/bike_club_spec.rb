@@ -53,7 +53,7 @@ RSpec.describe BikeClub do
       expect(bikeclub.most_rides).to eq (biker1)
     end
 
-    xit 'can tell which Biker has the lowest PR for a ride' do
+    it 'can tell which Biker has the lowest PR for a ride' do
       biker1 = Biker.new("Kenny", 30)
       biker1.learn_terrain!(:gravel)
       biker1.learn_terrain!(:hills)
@@ -73,6 +73,10 @@ RSpec.describe BikeClub do
       bikeclub = BikeClub.new("Sons of Anarchy")
       bikeclub.add_biker(biker1)
       bikeclub.add_biker(biker2) 
+
+
+      expect(bikeclub.best_time(ride1)).to eq biker1
+
     end
 
     xit 'can tell which Bikers are eligible for a given ride' do

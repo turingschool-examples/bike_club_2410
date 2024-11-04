@@ -86,7 +86,7 @@ RSpec.describe BikeClub do
         end
     end
 
-    describe '#bikers_eligible(ride)' do
+    describe '#bikers_eligible' do
         it 'returns a list of bikers that are elibable for a ride based on distance and terrain' do
             club = BikeClub.new("Colorado Bikers")
             biker_1 = Biker.new("Kenny", 30)
@@ -107,7 +107,7 @@ RSpec.describe BikeClub do
             club.add_biker(biker_2)
             club.add_biker(biker_3)
 
-            expect(bikers_eligible(ride1)).to eq([biker_2, biker_3])
+            expect(club.bikers_eligible(ride1)).to eq([biker_2, biker_3])
         end
     end
 end

@@ -25,6 +25,8 @@ class BikeClub
     end
 
     def bikers_eligible(ride)
-        # require 'pry'; binding.pry
+        @bikers.find_all do |biker|
+            biker.acceptable_terrain.include?(ride.terrain) && biker.max_distance >= ride.total_distance
+        end
     end
 end

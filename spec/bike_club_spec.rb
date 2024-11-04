@@ -33,4 +33,15 @@ RSpec.describe BikeClub do
       expect(@bike_club.bikers).to eq([])
     end
   end
+
+  describe "#add_biker" do
+    it 'can add a biker to list of bikers' do
+      expect(@bike_club.bikers).to eq([])
+
+      @bike_club.add(@biker1)
+      @bike_club.add(@biker2)
+
+      expect(@bike_club.bikers).to eq([@biker1, @biker2])
+    end
+  end
 end

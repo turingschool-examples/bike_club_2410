@@ -47,6 +47,9 @@ RSpec.describe BikeClub do
       ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
       ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
 
+      bike_club.add_biker(biker)
+      bike_club.add_biker(biker2)
+      
       biker.learn_terrain!(:hills)
       biker.learn_terrain!(:gravel)
       biker2.learn_terrain!(:gravel)

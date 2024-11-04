@@ -29,4 +29,8 @@ class Biker
       false
     end
   end
+
+  def ride_count
+    rides.values.flatten.count
+  end
 end

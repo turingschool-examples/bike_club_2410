@@ -97,7 +97,7 @@ RSpec.describe Biker do
       expect(biker2.rides).to eq({ ride2 => [65.0] })
     end
 
-    it '#personal_record will return the lowest ride time or false if the ride has not been able to be logged' do
+    it 'can return the lowest ride time or false' do
     biker2 = Biker.new("Athena", 15)
     biker2.learn_terrain!(:gravel)
     biker2.learn_terrain!(:hills)
@@ -111,6 +111,20 @@ RSpec.describe Biker do
 
     expect(biker2.personal_record(ride2)).to eq 65.0
     expect(biker2.personal_record(ride1)).to eq false
+    end
+
+    it 'can calculate the total number of rides taken' do
+      biker = Biker.new("Kenny", 30)
+      biker.learn_terrain!(:gravel)
+      biker.learn_terrain!(:hills)
+      ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+      ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel}) 
+      biker.log_ride(ride1, 92.5)
+      biker.log_ride(ride1, 91.1)
+      biker.log_ride(ride2, 60.9)
+      biker.log_ride(ride2, 61.6)
+
+      expect(biker.ride_count).to eq 4
     end
   end
 end

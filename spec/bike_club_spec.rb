@@ -50,3 +50,10 @@ it 'can find the biker with the most rides' do
   
   expect(@bike_club.most_rides).to eq(@biker1)
 end
+
+it 'can find the biker with the best time for a specific ride' do
+  @bike_club.add_biker(@biker1)
+  @bike_club.add_biker(@biker2)
+  
+  expect(@bike_club.best_time(@ride2)).to eq(@biker1)
+end

@@ -19,7 +19,7 @@ RSpec.describe BikeClub do
 
     @biker1 = Biker.new("Kenny", 30)
     @biker2 = Biker.new("Athena", 15)
-    @biker3 = Biker.new("Maria", 18)
+    @biker3 = Biker.new("Maria", 20)
 
     @bike_club = BikeClub.new("Foothills Bike Club")
   end
@@ -42,8 +42,8 @@ RSpec.describe BikeClub do
     it 'can add a biker to list of bikers' do
       expect(@bike_club.bikers).to eq([])
 
-      @bike_club.add(@biker1)
-      @bike_club.add(@biker2)
+      @bike_club.add_biker(@biker1)
+      @bike_club.add_biker(@biker2)
 
       expect(@bike_club.bikers).to eq([@biker1, @biker2])
     end
@@ -62,12 +62,18 @@ RSpec.describe BikeClub do
       @biker1.log_ride(@ride1, 91.1)
       @biker1.log_ride(@ride2, 60.9)
       @biker1.log_ride(@ride3, 97.6)
-      @biker2.log_ride(@ride1, 97.0)
+
+      @biker2.log_ride(@ride1, 97.0) # Shouldn't be recorded since not eligible
       @biker2.log_ride(@ride2, 60.3)
-      @biker2.log_ride(@ride3, 100.2)
+      @biker2.log_ride(@ride3, 100.2) # Shouldn't be recorded since not eligible
+
       @biker3.log_ride(@ride2, 63.4)
       @biker3.log_ride(@ride3, 94.3)
       @biker3.log_ride(@ride3, 96.8)
+      
+      @bike_club.add_biker(@biker1)
+      @bike_club.add_biker(@biker2)
+      @bike_club.add_biker(@biker3)
     end
 
     describe "#most_rides" do
@@ -76,7 +82,7 @@ RSpec.describe BikeClub do
       end  
     end
 
-    descirbe "#best_time" do
+    describe "#best_time" do
       it 'can determine which biker has the best time for a ride' do
         expect(@bike_club.best_time(@ride1)).to eq(@biker1) 
         expect(@bike_club.best_time(@ride2)).to eq(@biker2)
@@ -86,9 +92,9 @@ RSpec.describe BikeClub do
 
     describe "#biker_eligible" do
       it 'can determine is a biker is eligible for a ride' do
-        expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1, @biker2, @biker3])
-        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker3])
-        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1])
+        expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1])
+        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker2, @biker3])
+        expect(@bike_club.bikers_eligible(@ride3)).to eq([@biker1, @biker3])
       end
     end
   end

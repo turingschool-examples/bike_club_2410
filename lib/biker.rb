@@ -27,8 +27,8 @@ class Biker
 
   def personal_record(ride)
     return false if @rides.keys.include?(ride) != true
+   
     times = @rides[ride] 
-    
     best_time = times.min_by do |time|
       time
     end

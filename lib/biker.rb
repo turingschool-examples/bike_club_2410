@@ -21,4 +21,11 @@ class Biker
     end
     true
   end
+
+  def personal_record(ride)
+    times = @rides[ride] 
+    best_time = times.min_by do |time|
+      time
+    end
+  end
 end

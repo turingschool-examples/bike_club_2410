@@ -79,4 +79,29 @@ RSpec.describe BikeClub do
     expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1])
     expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker2])
   end
+
+# Test record_group_ride
+  it 'can record a group ride with start and finish times' do
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+
+    # Use stubs to fix the start time
+    allow(Time).to receive(:now).and_return(Time.new(2023, 11, 4, 8, 0, 0)) # Example start time
+
+    # Record a group ride and check the group_rides attribute
+    @bike_club.record_group_ride(@ride1)
+    expect(@bike_club.group_rides).to be_an(Array)
+    expect(@bike_club.group_rides.first[:start_time]).to eq(Time.new(2023, 11, 4, 8, 0, 0))
+    expect(@bike_club.group_rides.first[:ride]).to eq(@ride1)
+    expect(@bike_club.group_rides.first[:members]).to include(@biker1)
+  end
+  it 'can find the best rider for a given ride across all BikeClub instances' do
+    @bike_club.add_biker(@biker1)
+    @bike_club.add_biker(@biker2)
+    @biker1.log_ride(@ride1, 25)
+    @biker2.log_ride(@ride1, 30)
+
+    # Test that the best rider across all clubs for a specific ride is found correctly
+    expect(BikeClub.best_rider(@ride1)).to eq(@biker1)
+  end
 end

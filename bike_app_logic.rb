@@ -56,5 +56,21 @@ eligible_for_ride2 = bike_club.bikers_eligible(ride2).map(&:name)
 puts "Bikers eligible for Ride 1: #{eligible_for_ride1.join(', ')}"
 puts "Bikers eligible for Ride 2: #{eligible_for_ride2.join(', ')}"
 
-# Drop into a `pry` session to explore further if needed
+# Start and record a group ride for Ride 1
+bike_club.record_group_ride(ride1)
+
+# Display all recorded group rides
+puts "\nRecorded Group Rides:"
+bike_club.group_rides.each_with_index do |group_ride, index|
+  puts "Group Ride #{index + 1}:"
+  puts "  Start Time: #{group_ride[:start_time]}"
+  puts "  Ride: #{group_ride[:ride].name}"
+  puts "  Members: #{group_ride[:members].map(&:name).join(', ')}"
+end
+
+# Find the best rider across all BikeClub instances for Ride 1
+best_rider_for_ride1 = BikeClub.best_rider(ride1)
+puts "\nBest rider for Ride 1 across all clubs: #{best_rider_for_ride1.name}"
+
+# Drop into a `pry` session to explore further
 binding.pry

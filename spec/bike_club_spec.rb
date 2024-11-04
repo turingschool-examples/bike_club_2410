@@ -14,7 +14,7 @@ RSpec.describe BikeClub do
 
     it 'can have different attributes' do
       bike_club2 = BikeClub.new("Rolling Thunder")
-      expect(bike_club.name).to eq("Rolling Thunder")
+      expect(bike_club2.name).to eq("Rolling Thunder")
     end
 
     it 'has a default attribute' do

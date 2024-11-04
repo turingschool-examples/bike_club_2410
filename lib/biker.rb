@@ -13,5 +13,15 @@ class Biker
     return true
   end
 
+  def log_ride(ride, time)
+
+    if @rides.keys.include?(ride) != true
+      @rides[ride] = [time]
+    else
+      @rides[ride] << time
+    end
+    return true
+  end
+
  
 end

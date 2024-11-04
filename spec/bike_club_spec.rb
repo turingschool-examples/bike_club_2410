@@ -4,10 +4,6 @@ RSpec.describe BikeClub do
 
   # Iteration 3
   before(:each) do
-    @biker1 = Biker.new("Kenny", 30)
-    @biker2 = Biker.new("Athena", 15)
-    @biker3 = Biker.new("Maria", 18)
-
     @ride1 = Ride.new({name: "Walnut Creek Trail", 
                       distance: 10.7, 
                       loop: false, 
@@ -16,6 +12,14 @@ RSpec.describe BikeClub do
                       distance: 14.9, 
                       loop: true, 
                       terrain: :gravel})
+    @ride3 = Ride.new({name: "Lake Estes",
+                      distance: 19.3,
+                      loop: true,
+                      terrain: :hills})
+
+    @biker1 = Biker.new("Kenny", 30)
+    @biker2 = Biker.new("Athena", 15)
+    @biker3 = Biker.new("Maria", 18)
 
     @bike_club = BikeClub.new("Foothills Bike Club")
   end
@@ -43,5 +47,35 @@ RSpec.describe BikeClub do
 
       expect(@bike_club.bikers).to eq([@biker1, @biker2])
     end
+  end
+
+  describe "biker_trackers" do
+    before(:each) do
+      @biker1.learn_terrain!(:gravel)
+      @biker1.learn_terrain!(:hills)
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+      @biker3.learn_terrain!(:gravel)
+      @biker3.learn_terrain!(:hills)
+
+      @biker1.log_ride(@ride1, 92.5)
+      @biker1.log_ride(@ride1, 91.1)
+      @biker1.log_ride(@ride2, 60.9)
+      @biker1.log_ride(@ride3, 97.6)
+      @biker2.log_ride(@ride1, 97.0)
+      @biker2.log_ride(@ride2, 67.0)
+      @biker2.log_ride(@ride3, 100.2)
+      @biker3.log_ride(@ride2, 63.4)
+      @biker3.log_ride(@ride3, 94.3)
+      @biker3.log_ride(@ride3, 96.8)
+    end
+
+    describe "#most_rides" do
+      it 'can determine which biker has logged the most rides' do
+        expect(@bike_club.most_rides).to eq(@biker1)
+      end  
+    end
+
+   
   end
 end

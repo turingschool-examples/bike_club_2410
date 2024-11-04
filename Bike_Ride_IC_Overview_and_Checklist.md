@@ -14,7 +14,7 @@ Here’s a breakdown of each iteration:
 
 ---
 
-### Iteration 1: `Ride` Class
+# Iteration 1: `Ride` Class
 
 The `Ride` class represents an individual biking route with:
 
@@ -31,13 +31,23 @@ The `Ride` class allows bikers to easily check if a route meets their preference
 - [ ] Implement `total_distance` method to calculate the total distance.
 - [ ] Write and pass tests for each method.
 
-**Reflection for Iteration 1:**
-- **Name:** Qory
-**Reflection:** How did you feel completing this iteration? What went well, and what could you improve on in the future?
+# Iteration 1 Reflection: Ride Class
+
+### Overview:
+In **Iteration 1**, the goal was to create a `Ride` class that models an individual biking route with attributes like `name`, `distance`, `loop`, and `terrain`. This class also included methods to check if the route was a loop and calculate the total distance accordingly.
+
+### Challenges and Fixes:
+1. **Forgotten `attr_reader`**: Initially, some attributes like `name` and `distance` weren’t accessible outside the class because `attr_reader` wasn’t added. Adding `attr_reader` for each attribute fixed this issue and allowed easy access to these values.
+2. **Missing Method `loop?`**: I initially forgot to define the `loop?` method, which led to an error when trying to check if the ride was a loop. Adding `def loop?` and returning the `@loop` instance variable fixed this.
+3. **End Keyword Errors**: While defining methods, I encountered errors because I missed the `end` keyword in a couple of places. Adding the correct `end` statements resolved these syntax issues.
+
+### Key Takeaways:
+- Understanding the role of `attr_reader` and how it enables read-only access to instance variables.
+- The importance of defining all methods required by the iteration, such as `loop?` and `total_distance`.
 
 ---
 
-### Iteration 2: `Biker` Class
+# Iteration 2: `Biker` Class
 
 The `Biker` class models a biker’s individual preferences and ride history:
 
@@ -56,13 +66,24 @@ This class introduces constraints, such as restricting bikers from logging rides
 - [ ] Implement `personal_record` to find the best time for a ride.
 - [ ] Write and pass tests for each method.
 
-**Reflection for Iteration 2:**
-- **Name:** Qory
-- **Reflection:** How did you feel completing this iteration? What challenges did you face, and how did you overcome them?
+# Iteration 2 Reflection: Biker Class
+
+### Overview:
+**Iteration 2** focused on building the `Biker` class, which included attributes like `name`, `max_distance`, `acceptable_terrain`, and `rides`. This class was designed to log rides based on terrain and distance requirements and keep track of each biker’s personal best time for specific rides.
+
+### Challenges and Fixes:
+1. **Empty Hash Initialization for `rides`**: Initially, `rides` wasn’t initialized as a hash, causing errors when trying to log rides. Adding `@rides = {}` in the initializer resolved this issue.
+2. **Missing `learn_terrain!` Method**: The first attempt to add terrain failed because the `learn_terrain!` method wasn’t defined. Adding this method allowed bikers to store acceptable terrains in the `acceptable_terrain` array.
+3. **Errors in `personal_record` Logic**: There were issues when `personal_record` returned incorrect results or errors for unlogged rides. Adding a check with `|| false` helped ensure that `personal_record` returned `false` when no time was recorded for a ride.
+4. **End Keyword Issues**: A missing `end` keyword in one of the methods caused syntax errors, and adding it corrected this.
+
+### Key Takeaways:
+- Initializing instance variables correctly is essential, especially when the variable is expected to be a specific data type like a hash or array.
+- Using `|| false` in methods to handle cases where no data is present, which helped avoid unexpected errors.
 
 ---
 
-### Iteration 3: `BikeClub` Class
+# Iteration 3: `BikeClub` Class
 
 The `BikeClub` class represents a club where bikers can share their activities and achievements:
 
@@ -83,13 +104,24 @@ This class enables group-level tracking, helping determine the most experienced 
 - [ ] Implement `bikers_eligible` to list eligible bikers based on terrain and distance.
 - [ ] Write and pass tests for each method.
 
-**Reflection for Iteration 3:**
-- **Name:** Qory
-- **Reflection:** How did you feel completing this iteration? Any new insights or areas to improve for future iterations?
+# Iteration 3 Reflection: BikeClub Class
+
+### Overview
+**Iteration 3**, I created the `BikeClub` class, designed to manage multiple `Biker` instances. This iteration included methods to add bikers, find the biker with the most rides, determine the best time for a ride, and check eligibility based on terrain and distance.
+
+### Challenges and Fixes:
+1. **Forgot to Add `attr_reader` for `bikers` and `name`**: Initially, I couldn’t access `bikers` and `name` outside the class because `attr_reader` was missing. Adding `attr_reader` fixed this issue.
+2. **Logic Errors in `most_rides`**: The initial implementation of `most_rides` didn’t account for counting total rides across all bikers. Using `max_by { |biker| biker.rides.values.flatten.size }` resolved this by flattening the nested arrays and accurately counting rides.
+3. **Missing `end` in `bikers_eligible` Method**: There was a syntax error due to a missing `end` keyword. Adding the `end` at the correct place fixed this.
+4. **Testing Issues with Eligibility**: While testing `bikers_eligible`, I realized it wasn’t filtering bikers correctly due to a logic error. Adjusting the conditions in the `select` block to check both `terrain` and `max_distance` solved this problem.
+
+### Key Takeaways:
+- Flattening nested arrays using `flatten` can be very helpful for counting elements across multiple nested levels.
+- The `select` method is powerful for filtering based on multiple conditions, and adjusting logic within it helped fix filtering issues.
 
 ---
 
-### Iteration 4: Extensions (Advanced Bike Club Features)
+# Iteration 4: Extensions (Advanced Bike Club Features)
 
 This final iteration adds the `record_group_ride` feature, which simulates a group event where all eligible bikers start a ride at the same time and finish individually:
 
@@ -104,6 +136,18 @@ This final iteration adds the `record_group_ride` feature, which simulates a gro
 - [ ] Write tests using mocks and stubs to simulate time for group rides.
 - [ ] Ensure `self.best_rider` accurately finds the best rider across all clubs.
 
-**Reflection for Iteration 4:**
-- **Name:** Qory
-- **Reflection:** How did this final iteration go? Any additional thoughts on the challenge as a whole or ways you’d improve next time?
+# Iteration 4 Reflection: Advanced Features in BikeClub
+
+### Overview:
+**Iteration 4** introduced advanced features in `BikeClub`, including tracking group rides and identifying the best rider across all instances of `BikeClub`. This iteration also required mocking time to make testing predictable.
+
+### Challenges and Fixes:
+1. **Initialization of `group_rides` Array**: Initially, `group_rides` was not set up correctly due to a typo (`@group_rides + []` instead of `@group_rides = []`). Fixing this allowed `group_rides` to store recorded rides correctly.
+2. **Testing `record_group_ride` with Stubs**: Setting up `Time.now` stubs was tricky, but using `allow(Time).to receive(:now).and_return(...)` in the test setup made it predictable and ensured tests could verify specific start times.
+3. **Referencing `@group_rides` in Methods**: I initially used `group_rides` instead of `@group_rides`, which created a local variable rather than updating the instance variable. Adding `@` fixed this issue.
+4. **Finding Best Rider Across All Clubs**: Implementing `best_rider` was challenging because it needed to check all instances of `BikeClub`. Using `ObjectSpace.each_object(BikeClub)` allowed the method to iterate through all clubs and find the best rider.
+
+### Key Takeaways:
+- Stubbing `Time.now` is crucial for predictable test results, especially when time is involved in business logic.
+- Referencing instance variables correctly with `@` is essential to avoid creating unintended local variables.
+- `ObjectSpace.each_object` can be useful for iterating through all instances of a class, especially when implementing class-level methods that operate across multiple instances.

@@ -44,3 +44,9 @@ it 'can add bikers' do
   expect(@bike_club.bikers).to eq([@biker1, @biker2])
 end
 
+it 'can find the biker with the most rides' do
+  @bike_club.add_biker(@biker1)
+  @bike_club.add_biker(@biker2)
+  
+  expect(@bike_club.most_rides).to eq(@biker1)
+end

@@ -19,7 +19,7 @@ RSpec.describe BikeClub do
 
     @biker1 = Biker.new("Kenny", 30)
     @biker2 = Biker.new("Athena", 15)
-    @biker3 = Biker.new("Maria", 18)
+    @biker3 = Biker.new("Maria", 20)
 
     @bike_club = BikeClub.new("Foothills Bike Club")
   end
@@ -62,9 +62,11 @@ RSpec.describe BikeClub do
       @biker1.log_ride(@ride1, 91.1)
       @biker1.log_ride(@ride2, 60.9)
       @biker1.log_ride(@ride3, 97.6)
-      @biker2.log_ride(@ride1, 97.0)
+
+      @biker2.log_ride(@ride1, 97.0) # Shouldn't be recorded since not eligible
       @biker2.log_ride(@ride2, 60.3)
-      @biker2.log_ride(@ride3, 100.2)
+      @biker2.log_ride(@ride3, 100.2) # Shouldn't be recorded since not eligible
+
       @biker3.log_ride(@ride2, 63.4)
       @biker3.log_ride(@ride3, 94.3)
       @biker3.log_ride(@ride3, 96.8)
@@ -90,9 +92,9 @@ RSpec.describe BikeClub do
 
     describe "#biker_eligible" do
       it 'can determine is a biker is eligible for a ride' do
-        expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1, @biker2, @biker3])
-        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker3])
-        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1])
+        expect(@bike_club.bikers_eligible(@ride1)).to eq([@biker1])
+        expect(@bike_club.bikers_eligible(@ride2)).to eq([@biker1, @biker2, @biker3])
+        expect(@bike_club.bikers_eligible(@ride3)).to eq([@biker1, @biker3])
       end
     end
   end

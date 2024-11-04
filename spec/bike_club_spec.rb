@@ -40,7 +40,7 @@ RSpec.describe BikeClub do
       @biker2.learn_terrain!(:gravel)
       @biker2.log_ride(@ride2, 65.0)
 
-      expect(@bikeclub.most_rides_logged).to eq([@biker])
+      expect(@bikeClub.most_rides).to eq([@biker])
     end
   end
 end
